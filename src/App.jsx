@@ -5,6 +5,7 @@ import MessageList from './MessageList.jsx';
 
 class App extends Component {
 
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +22,21 @@ class App extends Component {
                         content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
                       }
                     ]
+
                   };
+    this.onEnter = this.onEnter.bind(this);
+    this.onNameChange = this.onNameChange.bind(this);
+
+  }
+
+  onEnter(content) {
+      this.setState({
+        messages: this.state.messages.concat({id: this.state.messages.length+1, username: this.state.currentUser.name || 'Anon Penguin', content:content}),
+      });
+  }
+
+  onNameChange(content) {
+    this.setState({currentUser: {name: content}});
   }
 
   componentDidMount() {
@@ -29,7 +44,7 @@ class App extends Component {
     setTimeout(() => {
       console.log("Simulating incoming message");
       // Add a new message to the list of messages in the data store
-      const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
+      const newMessage = {id: this.state.messages.length+1, username: "Michelle", content: "Hello there!"};
       const messages = this.state.messages.concat(newMessage)
       // Update the state of the app component.
       // Calling setState will trigger a call to render() in App and all child components.
@@ -40,13 +55,14 @@ class App extends Component {
 
 
   render() {
+    this
     return (
     <div>
       <nav className="navbar">
         <a href="/" className="navbar-brand">Chatty</a>
       </nav>
       <MessageList messages= {this.state.messages}/>
-      <ChatBar currentUser= {this.state.currentUser} newMessage= {this.state.newMessage}/>
+      <ChatBar onNameChange={this.onNameChange} onEnter={this.onEnter} currentUser= {this.state.currentUser}/>
     </div>
     );
   }
