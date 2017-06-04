@@ -13,7 +13,9 @@ npm start
 npm start in chatty_server directory
 open http://localhost:3000
 ```
+### Screenshot
 
+![Example Conversation Screenshot](https://github.com/boomerandzapper/chatty/blob/master/screenshots/Example%20Conversation.png)
 
 
 ### Dependencies
