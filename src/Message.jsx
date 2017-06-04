@@ -37,7 +37,7 @@ class Message extends Component {
                            {index ? "" : this.props.username}
                          </span>
                          <span className="message-content">
-                           <img src={message} alt="Image Not Found"/>
+                           <img className="message-image" src={message} alt="Image Not Found"/>
                          </span>
                        </div>
               } else {
